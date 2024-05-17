@@ -1,6 +1,7 @@
 package com.www446.haveagoodday.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.www446.haveagoodday.R;
+import com.www446.haveagoodday.activity.NewsDetailActivity;
 
-//自定义的recyclerview的adapter
+/**
+ * 自定义的recyclerview的adapter
+ * 用来展示新闻列表
+ */
 public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder> {
 
     Context context;
@@ -23,12 +28,19 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
     @NonNull
     @Override
     public HomeRvAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_item, null, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.rv_item, null, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HomeRvAdapter.ViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NewsDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
 

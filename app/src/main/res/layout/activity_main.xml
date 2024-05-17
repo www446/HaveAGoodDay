@@ -39,16 +39,34 @@
         app:tabMode="scrollable">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="home" />
+            android:text="first" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="home" />
+            android:text="second" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="third" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fourth" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fifth" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sixth" />
 
     </com.google.android.material.tabs.TabLayout>
 

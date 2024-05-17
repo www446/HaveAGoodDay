@@ -1,5 +1,7 @@
 package com.www446.haveagoodday.adapter;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,6 +9,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.www446.haveagoodday.fragment.MainFragment;
 
+/**
+ * ViewPager的adapter
+ * 跟着书上敲，但是说是已经过时了
+ */
 public class NewsPagerAdapter extends FragmentStatePagerAdapter {
     int tabCount;
 
@@ -18,14 +24,11 @@ public class NewsPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return new MainFragment();
-            case 1:
-                return new MainFragment();
-            default:
-                return null;
-        }
+        Bundle args = new Bundle();
+        args.putInt("news_type", position);
+        Fragment fragment = new MainFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override

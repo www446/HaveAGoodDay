@@ -14,12 +14,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.www446.haveagoodday.R;
 import com.www446.haveagoodday.adapter.HomeRvAdapter;
 
-
+/**
+ * 所有的新闻Fragment
+ * 可以复用
+ */
 public class MainFragment extends Fragment {
+
+    int type = 0;
 
     private RecyclerView rv;
 
     HomeRvAdapter adapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        type = getArguments() != null ? getArguments().getInt("news_type") : 0;
+    }
 
     @Nullable
     @Override

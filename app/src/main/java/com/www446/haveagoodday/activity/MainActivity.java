@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         //有多个页面，往上搜了下，可以用viewpager结合tablayout来做
         ViewPager viewPager = findViewById(R.id.vp_news);
         tabLayout = findViewById(R.id.tl_news);
-
-        pagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(), 2);
+        //准备做6个频道
+        pagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(), 6);
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
