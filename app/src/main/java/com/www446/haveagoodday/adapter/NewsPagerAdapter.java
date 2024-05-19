@@ -9,23 +9,25 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.www446.haveagoodday.fragment.MainFragment;
 
+import java.util.List;
+
 /**
  * ViewPager的adapter
  * 跟着书上敲，但是说是已经过时了
  */
 public class NewsPagerAdapter extends FragmentStatePagerAdapter {
-    int tabCount;
+    List<String> list;
 
-    public NewsPagerAdapter(@NonNull FragmentManager fm, int tabCount) {
+    public NewsPagerAdapter(@NonNull FragmentManager fm, List<String> list) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        this.tabCount = tabCount;
+        this.list = list;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
         Bundle args = new Bundle();
-        args.putInt("news_type", position);
+        args.putString("news_type", list.get(position));
         Fragment fragment = new MainFragment();
         fragment.setArguments(args);
         return fragment;
@@ -33,6 +35,6 @@ public class NewsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return tabCount;
+        return list.size();
     }
 }

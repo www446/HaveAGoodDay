@@ -67,8 +67,19 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //androidx官方控件库
     implementation("com.google.android.material:material:1.12.0")
+    //viewpager2官方库
     implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    //网络请求三方库
     implementation("com.squareup.retrofit2:retrofit:2.10.0")
+    //gson解析库
+    implementation("com.squareup.retrofit2:converter-gson:2.10.0")
+    //三方打印网络日志的库
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    //三方图片加载库
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
 
 }
