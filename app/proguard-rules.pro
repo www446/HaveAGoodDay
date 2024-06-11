@@ -1,21 +1,47 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
+# Material Components
+#-dontwarn com.google.android.material.**
+#-keep class com.google.android.material.** { *; }
 #
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
+## ViewPager2
+#-dontwarn androidx.viewpager2.**
+#-keep class androidx.viewpager2.** { *; }
+#
+## Retrofit
+#-dontwarn retrofit2.**
+#-keep class retrofit2.** { *; }
+#
+## Gson Converter
+#-keep class com.google.gson.** { *; }
+#-dontwarn com.google.gson.**
+#-keepattributes Signature
+#-keepattributes *Annotation*
+#-keep class com.google.gson.reflect.TypeToken { *; }
+#-keep class **$$Lambda$* { *; }
+#
+## OkHttp3
+#-dontwarn okhttp3.**
+#-keep class okhttp3.** { *; }
+#-dontwarn okio.**
+#-dontwarn javax.annotation.**
+#
+## OkHttp3 Logging Interceptor
+#-keep class okhttp3.logging.** { *; }
+#-dontwarn okhttp3.logging.**
+#
+## Glide
+#-keep public class * extends com.bumptech.glide.module.AppGlideModule
+#-keep public class * extends com.bumptech.glide.module.LibraryGlideModule
+#-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+#    **[] $VALUES;
+#    public *;
 #}
+#-dontwarn com.bumptech.glide.**
+#-keep class com.bumptech.glide.load.** { *; }
+#-keep class com.bumptech.glide.request.** { *; }
+#
+## 保留注解和Lambda表达式
+#-keepattributes *Annotation*
+#-keep class **$$Lambda$* { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keep class com.www446.haveagoodday.model.** { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile

@@ -1,9 +1,11 @@
 package com.www446.haveagoodday.model;
 
+import java.io.Serializable;
+
 /**
  * 新闻详情bean
  */
-public class NewsDetail {
+public class NewsDetail implements Serializable {
     String title;
     String time;
     String src;

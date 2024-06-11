@@ -1,24 +1,33 @@
 package com.www446.haveagoodday.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.www446.haveagoodday.R;
+import com.www446.haveagoodday.manager.FavoritesManager;
+import com.www446.haveagoodday.model.NewsDetail;
 
 /**
  * 具体每一条新闻的详情页面
  */
 public class NewsDetailActivity extends AppCompatActivity {
+
+    private SharedPreferences sharedPreferences;
+    private boolean isFavorite = false; // 收藏状态，默认为未收藏
+
+    ImageView buttonFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +48,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 在点击事件中调用 WebView 的 goBack() 方法
-                if (webView.canGoBack()) {
-                    webView.goBack();
-                } else {
-                    // 如果 WebView 无法返回，则执行默认的返回操作
-                    onBackPressed();
-                }
+                onBackPressed();
             }
         });
 
@@ -75,15 +78,50 @@ public class NewsDetailActivity extends AppCompatActivity {
         webView.clearCache(true);
 
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("url")) {
-            String url = intent.getStringExtra("url");
-            Log.e("xxxx","url : " + url);
-            //打印url看下为什么样式一直有问题
-            webView.loadUrl(url);
-            //因为新闻里面自带标题所以此处不额外加标题了
-//            String title = intent.getStringExtra("title");
-//            tvTitle.setText(title);
-        }
+        sharedPreferences = getSharedPreferences("favorites", MODE_PRIVATE);
+
+        NewsDetail newsDetail = (NewsDetail) intent.getSerializableExtra("news");
+        FavoritesManager manager = new FavoritesManager(this);
+        manager.addRecentNews(newsDetail);
+
+
+        String url = intent.getStringExtra("url");
+        isFavorite = sharedPreferences.getBoolean(url, false);
+        buttonFavorite = findViewById(R.id.iv_favorite);
+        updateFavoriteIcon();
+        buttonFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isFavorite) {
+                    // 如果已收藏，取消收藏
+                    isFavorite = false;
+                    manager.removeFavoriteNews(newsDetail);
+                    Toast.makeText(NewsDetailActivity.this, "已取消收藏", Toast.LENGTH_SHORT).show();
+                } else {
+                    // 如果未收藏，执行收藏操作
+                    isFavorite = true;
+                    manager.addFavoriteNews(newsDetail);
+                    Toast.makeText(NewsDetailActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
+                }
+                updateFavoriteIcon();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(url, isFavorite);
+                editor.apply();
+            }
+        });
+
+        webView.loadUrl(url);
 
     }
+
+    // 更新收藏按钮图标
+    private void updateFavoriteIcon() {
+        if (isFavorite) {
+            buttonFavorite.setImageResource(R.drawable.favorite);
+        } else {
+            buttonFavorite.setImageResource(R.drawable.unfavorite);
+        }
+    }
 }
+
+

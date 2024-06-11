@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--搜到了这个主题，不然的话一直会报错-->
-    <style name="Theme.HaveAGoodDay" parent="Theme.Material3.DayNight.NoActionBar" />
+    <style name="Theme.HaveAGoodDay" parent="Theme.Material3.DayNight.NoActionBar" >
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>

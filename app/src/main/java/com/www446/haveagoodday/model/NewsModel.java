@@ -1,5 +1,7 @@
 package com.www446.haveagoodday.model;
 
+import androidx.annotation.Keep;
+
 import java.util.ArrayList;
 
 /**

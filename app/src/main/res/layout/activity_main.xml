@@ -1,49 +1,124 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
-    <!--学习了一下Toolbar来写app顶部的标题-->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="44dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Have a GoodDay"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-
-    <!--学习了往上的TabLayout的写法，但是为什么要scrollable没搞明白-->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tl_news"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:backgroundTint="@color/white"
-        app:tabIndicatorHeight="5dp"
-        app:tabMode="scrollable" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_news"
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tl_news"
-        android:layout_marginTop="4dp">
+        android:background="@color/white">
 
-    </androidx.viewpager.widget.ViewPager>
-</RelativeLayout>
+        <!--学习了一下Toolbar来写app顶部的标题-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/purple_200">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_menu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Have a GoodDay"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <!--学习了往上的TabLayout的写法，但是为什么要scrollable没搞明白-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:backgroundTint="@color/white"
+            app:tabIndicatorHeight="5dp"
+            app:tabMode="scrollable" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tl_news"
+            android:layout_marginTop="4dp">
+
+        </androidx.viewpager.widget.ViewPager>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/leftLayout"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/purple_500"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/back" />
+        <!-- 头像、姓名等用户信息 -->
+        <ImageView
+            android:id="@+id/imageViewAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Tommy"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <!-- 我的收藏 -->
+        <TextView
+            android:id="@+id/textViewFavorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="我的收藏"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <!-- 最近浏览 -->
+        <TextView
+            android:id="@+id/textViewRecentlyViewed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="最近浏览"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

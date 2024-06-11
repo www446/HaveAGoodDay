@@ -45,6 +45,7 @@ public class HomeRvAdapter extends RecyclerView.Adapter<HomeRvAdapter.ViewHolder
             public void onClick(View v) {
                 Intent intent = new Intent(context, NewsDetailActivity.class);
                 intent.putExtra("url", list.get(position).getUrl());
+                intent.putExtra("news", list.get(position));
 //                intent.putExtra("title", list.get(position).getTitle());
                 context.startActivity(intent);
             }

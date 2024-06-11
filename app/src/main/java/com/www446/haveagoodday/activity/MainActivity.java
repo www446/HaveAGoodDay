@@ -1,10 +1,14 @@
 package com.www446.haveagoodday.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -31,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
     // appkey
     String key = "d92a839219de2d041073fb190e0f34ee";
 
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
+    private View leftLayout;
+
+    private View mainLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +52,41 @@ public class MainActivity extends AppCompatActivity {
         //有多个页面，往上搜了下，可以用viewpager结合tablayout来做
         viewPager = findViewById(R.id.vp_news);
         tabLayout = findViewById(R.id.tl_news);
+        mainLayout = findViewById(R.id.main);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        leftLayout = findViewById(R.id.leftLayout);
+        findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(leftLayout);
+                leftLayout.setFocusable(true);
+                leftLayout.setClickable(true);
+            }
+        });
+        findViewById(R.id.ivBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawer(leftLayout);
+            }
+        });
+        findViewById(R.id.textViewFavorites).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyFavoritesActivity.class);
+                intent.putExtra("index", 0);
+//                intent.putExtra("title", list.get(position).getTitle());
+                MainActivity.this.startActivity(intent);
+            }
+        });
+        findViewById(R.id.textViewRecentlyViewed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyFavoritesActivity.class);
+                intent.putExtra("index", 1);
+//                intent.putExtra("title", list.get(position).getTitle());
+                MainActivity.this.startActivity(intent);
+            }
+        });
         //拿到接口请求的频道
         getChannel();
     }
